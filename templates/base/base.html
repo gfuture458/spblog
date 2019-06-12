@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'base/head.html' %}
+</head>
+<body>
+    <header>
+        {% include 'base/header.html' %}
+    </header>
+
+    <article>
+        {% block picbox %}{% endblock %}
+        {% block blogs %}{% endblock %}
+        {% block sider %}{% endblock %}
+    </article>
+    <footer>
+        {% include 'base/footer.html' %}
+    </footer>
+    <a href="#" class="cd-top">Top</a>
+</body>
+</html>
