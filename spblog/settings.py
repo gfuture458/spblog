@@ -25,7 +25,7 @@ SECRET_KEY = '4e+ur+efg-usv_v0xj+_^z+6%gsq2c0-v=fdru(hiw^p--5av8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "opinfo.UserAccount"
 

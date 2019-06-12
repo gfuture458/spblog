@@ -7,8 +7,8 @@ from django.contrib.admin.utils import get_fields_from_path, lookup_needs_distin
 from django.core.exceptions import SuspiciousOperation, ImproperlyConfigured, ValidationError
 from django.db import models
 from django.db.models.fields import FieldDoesNotExist
-from django.db.models.sql.query import LOOKUP_SEP
-# QUERY_TERMS
+from django.db.models.constants import LOOKUP_SEP
+# from django.db.models.sql.constants import QUERY_TERMS
 from django.template import loader
 from django.utils import six
 from django.utils.encoding import smart_str
@@ -60,9 +60,9 @@ class FilterPlugin(BaseAdminPlugin):
                 # Lookups on non-existants fields are ok, since they're ignored
                 # later.
                 return True
-            if hasattr(field, 'rel'):
-                model = field.rel.to
-                rel_name = field.rel.get_related_field().name
+            if hasattr(field, 'remote_field'):
+                model = field.remote_field.to
+                rel_name = field.remote_field.get_related_field().name
             elif is_related_field(field):
                 model = field.model
                 rel_name = model._meta.pk.name
@@ -159,7 +159,7 @@ class FilterPlugin(BaseAdminPlugin):
             # fix a bug by david: In demo, quick filter by IDC Name() cannot be used.
             if isinstance(queryset, models.query.QuerySet) and lookup_params:
                 new_lookup_parames = dict()
-                for k, v in lookup_params.iteritems():
+                for k, v in lookup_params.items():
                     list_v = v.split(',')
                     if len(list_v) > 0:
                         new_lookup_parames.update({k: list_v})

@@ -63,6 +63,7 @@ class LoginView(BaseAdminView):
             'template_name': self.login_template or 'xadmin/views/login.html',
         }
         self.update_params(defaults)
+        # return login(request, **defaults)
         return login.as_view(**defaults)(request)
 
     @never_cache
@@ -91,6 +92,7 @@ class LogoutView(BaseAdminView):
             defaults['template_name'] = self.logout_template
 
         self.update_params(defaults)
+        # return logout(request, **defaults)
         return logout.as_view(**defaults)(request)
 
     @never_cache

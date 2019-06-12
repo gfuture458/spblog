@@ -20,6 +20,12 @@ from . import settings
 from django.conf.urls.static import static
 import xadmin
 
+from xadmin.plugins import xversion
+xadmin.autodiscover()
+xversion.register_models()
+
+
+
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path("xadmin/", xadmin.site.urls),
