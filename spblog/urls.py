@@ -23,7 +23,8 @@ import xadmin
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path("xadmin/", xadmin.site.urls),
-    url(r'mdeditor/', include('mdeditor.urls'))
+    url(r'mdeditor/', include('mdeditor.urls')),
+    path("", include('opinfo.urls'))
 ]
 
 if settings.DEBUG:

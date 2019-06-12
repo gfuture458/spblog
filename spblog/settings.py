@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 ]
 
 MY_APPS = [
-    'article'
+    "opinfo"
 ]
 
 INSTALLED_APPS.extend(MY_APPS)
@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'opinfo.site.head_info'
             ],
         },
     },
@@ -135,5 +136,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "STATIC")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = '/media/'
