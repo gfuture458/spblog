@@ -11,4 +11,9 @@ from xadmin.plugins import xversion
 
 urlpatterns = [
     path('', views.Info.as_view()),
+    path('me/', views.AboutMe.as_view()),
+    path('list/', views.ListView.as_view()),
+    path('life/', views.LifeView.as_view()),
+    path('time/', views.TimeView.as_view()),
+    path('gbook/', views.GbookView.as_view())
 ]

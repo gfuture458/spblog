@@ -19,7 +19,7 @@ from django.conf.urls import url, include
 from . import settings
 from django.conf.urls.static import static
 import xadmin
-
+from . import views
 from xadmin.plugins import xversion
 xadmin.autodiscover()
 xversion.register_models()
@@ -27,8 +27,8 @@ xversion.register_models()
 
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
     path("xadmin/", xadmin.site.urls),
+    path('xadmin/opinfo/author/<uid>/password/', views.reset_password),
     url(r'mdeditor/', include('mdeditor.urls')),
     path("", include('opinfo.urls'))
 ]
