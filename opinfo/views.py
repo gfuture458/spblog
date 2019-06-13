@@ -1,18 +1,18 @@
 # coding: utf-8
 from django.shortcuts import render, redirect
 from django.views.generic import View
-
+from . import models
+from . import utils
 # Create your views here.
 
 
 class Info(View):
+    model = models.Blog
     def get(self, request, *args, **kwargs):
-        # data = {
-        #     "title": "首页_杨青个人博客 - 一个站在web前端设计之路的女技术员个人博客网站",
-        #     "keywords": "个人博客,杨青个人博客,个人博客模板,杨青",
-        #     "description": "杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。"
-        # }
-        return render(request, 'index.html')
+        query_list = self.model.objects.all()
+        # for q in query_list:
+        #     q.content = utils.get_content_view(q.content)
+        return render(request, 'index.html', context={"blog": query_list, 'art':True})
 
 
 class AboutMe(View):

@@ -15,8 +15,9 @@ Including another URLconf
 """
 # from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url, include
+from django.conf.urls import url, include, re_path
 from . import settings
+from django.views.static import serve
 from django.conf.urls.static import static
 import xadmin
 from . import views
@@ -30,7 +31,8 @@ urlpatterns = [
     path("xadmin/", xadmin.site.urls),
     path('xadmin/opinfo/author/<uid>/password/', views.reset_password),
     url(r'mdeditor/', include('mdeditor.urls')),
-    path("", include('opinfo.urls'))
+    path("", include('opinfo.urls')),
+    re_path('^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT})
 ]
 
 if settings.DEBUG:
