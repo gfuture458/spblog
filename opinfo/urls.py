@@ -16,5 +16,5 @@ urlpatterns = [
     path('life/', views.LifeView.as_view()),
     path('time/', views.TimeView.as_view()),
     path('gbook/', views.GbookView.as_view()),
-    path('info/', views.InfoView.as_view())
+    path('info/<bid>', views.InfoView.as_view())
 ]

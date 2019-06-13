@@ -41,5 +41,8 @@ class GbookView(View):
 
 
 class InfoView(View):
+    model = models.Blog
     def get(self, request, *args, **kwargs):
-        return render(request, 'info.html')
+        query = self.model.objects.filter(id=kwargs.get("bid")).first()
+        query.content = utils.get_content_view(query.content)
+        return render(request, 'info.html', context={"blog": query, 'xq': True})
