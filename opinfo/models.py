@@ -36,7 +36,10 @@ class UserAccount(AbstractUser):
 
     class Meta:
         verbose_name_plural = verbose_name = "帐号"
-        db_table = "blog_user"
+        db_table = "jh_user"
+
+    def __str__(self):
+        return self.username
 
 
 class Author(UserAccount):
@@ -44,3 +47,67 @@ class Author(UserAccount):
         verbose_name_plural = verbose_name = "我的帐号"
         proxy = True
 
+
+class Categoty(BaseModel):
+    cats = (
+        ("A", "文学类"),
+        ("B", "技术类")
+    )
+    pre_cts = models.CharField(max_length=1, choices=cats, verbose_name="前置分类")
+    cts = models.CharField(max_length=10, verbose_name="分类", null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = verbose_name = "分类"
+        db_table = "jh_categoty"
+
+    def __str__(self):
+        return  self.cts
+
+
+class Tag(BaseModel):
+    name = models.CharField(max_length=10, verbose_name="标签名", unique=True,
+                            null=False, blank=False, help_text="请输入20以内字符标签名")
+
+    class Meta:
+        verbose_name_plural = verbose_name = "标签"
+        db_table = "jh_tag"
+
+    def __str__(self):
+        return self.name
+
+
+class Blog(BaseModel):
+    title = models.CharField(max_length=20, null=False, blank=False, verbose_name="标题",help_text="请输入0-20个字符串的标题")
+    author = models.ForeignKey(
+        to=UserAccount,
+        on_delete=models.CASCADE,
+        limit_choices_to={
+            "is_active":True,
+            "is_staff":True
+        },
+        verbose_name="作者"
+    )
+    cts = models.ForeignKey(to=Categoty, related_name='ctsblogs', null=True, verbose_name="文章分类",
+                            on_delete=models.SET_NULL, limit_choices_to={"is_active":True})
+    tags = models.ManyToManyField(to=Tag, related_name="tblogs", verbose_name="标签",
+                                  blank=True, limit_choices_to={"is_active": True})
+    cover = models.ImageField(upload_to='blog/cover', verbose_name="封面", blank=True, null=True)
+    content = MDTextField()
+    # source = models.URLField(null=True, blank=True, verbose_name="原文链接", )
+    is_fine = models.BooleanField(default=False, verbose_name="推荐文章")
+    is_top = models.BooleanField(default=False, verbose_name="特别推荐")
+    read = models.PositiveIntegerField(default=0, verbose_name="阅读数")
+    like = models.PositiveIntegerField(default=0, verbose_name="喜欢")
+
+    class Meta:
+        verbose_name_plural = verbose_name = "博客"
+        db_table = "jh_blog"
+
+    def __str__(self):
+        return self.title
+
+
+class MyBlog(Blog):
+    class Meta:
+        verbose_name_plural = verbose_name = "我的博客"
+        proxy = True

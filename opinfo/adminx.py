@@ -6,7 +6,7 @@
 
 from xadmin.layout import Fieldset, Main, Row, Side
 from xadmin.plugins.auth import UserAdmin
-from .models import Author
+from .models import Author, Tag, Categoty, Blog, MyBlog
 from django.utils.translation import ugettext as _
 import xadmin
 
@@ -30,4 +30,10 @@ class AuthorAdmin(UserAdmin):
             )
         return super(UserAdmin, self).get_form_layout()
 
+
+
+xadmin.site.register(Tag)
+xadmin.site.register(Categoty)
+xadmin.site.register(Blog)
+xadmin.site.register(MyBlog)
 xadmin.site.register(Author, AuthorAdmin)

@@ -6,7 +6,7 @@
 
 from django.shortcuts import redirect
 
-def reset_password(request):
+def reset_password(request, uid):
     uri = 'xadmin/'
     if request.user.is_authenticated:
         uri = '/xadmin/account/password/'
