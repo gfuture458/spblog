@@ -38,3 +38,8 @@ class TimeView(View):
 class GbookView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'gbook.html')
+
+
+class InfoView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'info.html')

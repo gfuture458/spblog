@@ -10,8 +10,14 @@
     {% block container %}
     {% endblock %}
     <article>
-        {% block picbox %}{% endblock %}
-        {% block blogs %}{% endblock %}
+        {% if art %}
+            {% block picbox %}{% endblock %}
+            {% block blogs %}{% endblock %}
+        {% endif %}
+        {% if xq %}
+            {% block positon %}{% endblock %}
+            {% block detail %}{% endblock %}
+        {% endif %}
         {% block sider %}{% endblock %}
     </article>
     <footer>
