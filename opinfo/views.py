@@ -1,22 +1,24 @@
 # coding: utf-8
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from . import models
-from . import utils
+from . import models, utils
+
 # Create your views here.
 
 
 class Info(View):
     model = models.Blog
     def get(self, request, *args, **kwargs):
-        query_list = self.model.objects.all().order_by("-created_at")
-        horse = models.Horselight.objects.all()
+        query_list = self.model.objects.order_by("-created_at")
+        horse = models.Horselight.objects
+        sider = utils.get_fine_top_like()
         context = {
             "blog": query_list,
             "top": {
                 "left": horse.filter(name="A"),
                 "right": horse.filter(name="B")
             },
+            "sider": sider,
             "art": True
         }
         return render(request, 'index.html', context=context)

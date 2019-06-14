@@ -5,7 +5,7 @@
 # @author：jh
 
 import markdown
-
+from . import models
 
 def get_content_view(content):
     result = markdown.markdown(content, extensions=[
@@ -14,3 +14,19 @@ def get_content_view(content):
         'markdown.extensions.toc'
     ])
     return result
+
+
+def get_fine_top_like():
+    fine = models.Blog.objects.filter(is_fine=True).order_by('-created_at')[:3]
+    top = models.Blog.objects.filter(is_top=True).order_by('-created_at')[:3]
+    like = models.Blog.objects.order_by("-like")[:5]
+    tags = models.Tag.objects.all()
+    context = {
+        "t_fine": fine[0],
+        "is_fine": fine[1:],
+        "is_top": top,
+        "t_like": like[0],
+        "like": like[1:],
+        "tags": tags
+    }
+    return context
