@@ -20,9 +20,15 @@
         {% endif %}
         {% block sider %}{% endblock %}
     </article>
-    <footer>
-        {% include 'base/footer.html' %}
-    </footer>
+    {% if time %}
+        <footer style="position: fixed; bottom: 0">
+            {% include 'base/footer.html' %}
+        </footer>
+    {% else %}
+        <footer>
+            {% include 'base/footer.html' %}
+        </footer>
+    {% endif %}
     <a href="#" class="cd-top">Top</a>
 </body>
 </html>
