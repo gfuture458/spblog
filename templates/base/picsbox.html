@@ -2,10 +2,10 @@
 <div class="picsbox">
 <div class="banner">
 <div id="banner" class="fader">
-  <li class="slide" ><a href="/" target="_blank"><img src="{% static 'images/banner01.jpg' %}">
-      <span class="imginfo">别让这些闹心的套路，毁了你的网页设计!</span></a></li>
-  <li class="slide" ><a href="/" target="_blank"><img src="{% static 'images/banner02.jpg' %}"><span class="imginfo">网页中图片属性固定宽度，如何用js改变大小</span></a></li>
-  <li class="slide" ><a href="/" target="_blank"><img src="{% static 'images/banner03.jpg' %}"><span class="imginfo">个人博客，属于我的小世界！</span></a></li>
+    {% for left in top.left %}
+        <li class="slide" ><a href="/info/{{ left.target.first.id }}" ><img src=/uploads/{{ left.target.first.cover }}>
+      <span class="imginfo">{{ left.target.first.title }}</span></a></li>
+    {% endfor %}
   <div class="fader_controls">
     <div class="page prev" data-target="prev">&lsaquo;</div>
     <div class="page next" data-target="next">&rsaquo;</div>
@@ -16,11 +16,15 @@
 </div>
 <!--banner end-->
 <div class="toppic">
-<li> <a href="/" target="_blank"> <i><img src="images/toppic01.jpg"></i>
-  <h2>别让这些闹心的套路，毁了你的网页设计!</h2>
-  <span>学无止境</span> </a> </li>
-<li> <a href="/" target="_blank"> <i><img src="images/zd01.jpg"></i>
-  <h2>个人博客，属于我的小世界！</h2>
-  <span>学无止境</span> </a> </li>
+{% for right in top.right %}
+    <li>
+        <a href="/info/{{ right.target.first.id }}" >
+            <i>
+                <img src=/uploads/{{ right.target.first.cover }}>
+            </i>
+        <h2>{{ right.target.first.title }}</h2>
+        <span>{{ right.target.first.cts.get_pre_cts_display}}</span> </a>
+    </li>
+{% endfor %}
 </div>
 </div>

@@ -6,7 +6,7 @@
 
 from xadmin.layout import Fieldset, Main, Row, Side
 from xadmin.plugins.auth import UserAdmin
-from .models import Author, Tag, Categoty, Blog, MyBlog
+from .models import Author, Tag, Categoty, Blog, MyBlog, Horselight
 from django.utils.translation import ugettext as _
 import xadmin
 
@@ -30,10 +30,21 @@ class AuthorAdmin(UserAdmin):
             )
         return super(UserAdmin, self).get_form_layout()
 
+class CategotyAdmin(object):
+    list_display = ["cts", "pre_cts"]
 
+
+class BlogAdmin(object):
+    readonly_fields = ["read", "like"]
+#     list_display = ["title", "author", "desc", "cts", "tags", "cover", "content", "is_fine", "is_top"]
+    # readonly_fields = ('read', 'like')
+
+class HorseLightAdmin(object):
+    list_display = ["target", "name"]
 
 xadmin.site.register(Tag)
-xadmin.site.register(Categoty)
-xadmin.site.register(Blog)
-xadmin.site.register(MyBlog)
+xadmin.site.register(Categoty, CategotyAdmin)
+xadmin.site.register(Blog, BlogAdmin)
+xadmin.site.register(MyBlog, BlogAdmin)
 xadmin.site.register(Author, AuthorAdmin)
+xadmin.site.register(Horselight, HorseLightAdmin)

@@ -50,8 +50,8 @@ class Author(UserAccount):
 
 class Categoty(BaseModel):
     cats = (
-        ("A", "文学类"),
-        ("B", "技术类")
+        ("A", "学无止境"),
+        ("B", "慢生活")
     )
     pre_cts = models.CharField(max_length=1, choices=cats, verbose_name="前置分类")
     cts = models.CharField(max_length=10, verbose_name="分类", null=False, blank=False)
@@ -87,6 +87,7 @@ class Blog(BaseModel):
         },
         verbose_name="作者"
     )
+    desc = models.TextField(max_length=100, null=True, verbose_name="文章简介")
     cts = models.ForeignKey(to=Categoty, related_name='ctsblogs', null=True, verbose_name="文章分类",
                             on_delete=models.SET_NULL, limit_choices_to={"is_active":True})
     tags = models.ManyToManyField(to=Tag, related_name="tblogs", verbose_name="标签",
@@ -111,3 +112,20 @@ class MyBlog(Blog):
     class Meta:
         verbose_name_plural = verbose_name = "我的博客"
         proxy = True
+
+
+class Horselight(BaseModel):
+    tps = (
+        ("A", "走马灯"),
+        ("B", "小窗口")
+    )
+    name = models.CharField(max_length=10,choices=tps, verbose_name="类型")
+    target = models.ManyToManyField(to=Blog, related_name="lblog", verbose_name="博文")
+    # right = models.ManyToManyField(to=Blog, related_name="rblog", verbose_name="走马灯右侧博文")
+
+    class Meta:
+        verbose_name_plural = verbose_name = "轮播图"
+        db_table = 'jh_horse'
+
+    def __str__(self):
+        return self.name

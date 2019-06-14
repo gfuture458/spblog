@@ -1,7 +1,8 @@
 <!--menu begin-->
+{% load staticfiles %}
 <div class="menu">
 <nav class="nav" id="topnav">
-  <h1 class="logo"><a href="http://www.yangqq.com">{{ title }}</a></h1>
+  <h1 class="logo"><a href="/"><img src="{% static 'images/my_name.jpg' %}"></a></h1>
   <li><a href="/">网站首页</a> </li>
   <li><a href="/me">关于我</a> </li>
   <li><a href="/list">学无止境</a>

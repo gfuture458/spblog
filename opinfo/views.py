@@ -9,10 +9,17 @@ from . import utils
 class Info(View):
     model = models.Blog
     def get(self, request, *args, **kwargs):
-        query_list = self.model.objects.all()
-        # for q in query_list:
-        #     q.content = utils.get_content_view(q.content)
-        return render(request, 'index.html', context={"blog": query_list, 'art':True})
+        query_list = self.model.objects.all().order_by("-created_at")
+        horse = models.Horselight.objects.all()
+        context = {
+            "blog": query_list,
+            "top": {
+                "left": horse.filter(name="A"),
+                "right": horse.filter(name="B")
+            },
+            "art": True
+        }
+        return render(request, 'index.html', context=context)
 
 
 class AboutMe(View):

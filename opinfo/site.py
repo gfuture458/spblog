@@ -4,6 +4,7 @@
 # @name: site
 # @author：jh
 
+from . import models
 
 def head_info(request):
     """站点head信息"""
