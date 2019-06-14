@@ -70,4 +70,10 @@ class InfoView(View):
         query = self.model.objects.filter(id=kwargs.get("bid")).first()
         sider = utils.get_fine_top_like()
         query.content = utils.get_content_view(query.content)
+        query.read += 1
+        query.save(update_fields=("read",))
         return render(request, 'info.html', context={"blog": query,'sider':sider, 'xq': True})
+
+    def post(self, request, *args, **kwargs):
+        print(args, kwargs)
+        return
