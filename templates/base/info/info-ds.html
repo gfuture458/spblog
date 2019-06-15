@@ -1,8 +1,9 @@
 {% load staticfiles %}
 <div class="share">
     <p class="diggit">
-      <a href="JavaScript:makeRequest('/e/public/digg/?classid=3&amp;id=19&amp;dotop=1&amp;doajax=1&amp;ajaxarea=diggnum','EchoReturnedText','GET','');" id="zan"> 很赞哦！ </a>(<b id="diggnum">
-      <script type="text/javascript" src="/e/public/ViewClick/?classid=2&id=20&down=5"></script>{{ blog.like }}</b>)
+      <a href="JavaScript:;" onclick="zan()">很赞哦！ </a>
+        (<b id="diggnum">
+        {{ blog.like }}</b>)
     </p>
   <p class="dasbox">
       <a href="javascript:void(0)" onClick="dashangToggle()" class="dashang" title="打赏，支持一下">打赏本站</a>
@@ -40,6 +41,21 @@
         function dashangToggle(){
             $(".hide_box").fadeToggle();
             $(".shang_box").fadeToggle();
+        };
+        function zan() {
+            $.ajax({
+                url: "/info/{{ blog.id }}",
+                method: "POST",
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+                success: function (data) {
+                    console.log(data)
+                    var like_n = {{ blog.like }}
+                    if (data.code == 200){
+                        like_n += 1
+                        console.log($("#diggnum").text(like_n))
+                    }
+                }
+            })
         }
         </script>
   </div>

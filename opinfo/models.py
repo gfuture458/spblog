@@ -1,5 +1,6 @@
 from django.db import models
-from mdeditor.fields import MDTextField
+# from mdeditor.fields import MDTextField
+from DjangoUeditor.models import UEditorField
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
@@ -93,7 +94,9 @@ class Blog(BaseModel):
     tags = models.ManyToManyField(to=Tag, related_name="tblogs", verbose_name="标签",
                                   blank=True, limit_choices_to={"is_active": True})
     cover = models.ImageField(upload_to='blog/cover', verbose_name="封面", blank=True, null=True)
-    content = MDTextField()
+    # content = MDTextField()
+    content = UEditorField(verbose_name="内容", width="100%", blank=True,
+                           imagePath='blog/img/', filePath='blog/file/')
     # source = models.URLField(null=True, blank=True, verbose_name="原文链接", )
     is_fine = models.BooleanField(default=False, verbose_name="推荐文章")
     is_top = models.BooleanField(default=False, verbose_name="特别推荐")

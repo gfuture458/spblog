@@ -28,7 +28,8 @@ xversion.register_models()
 urlpatterns = [
     path("xadmin/", xadmin.site.urls),
     path('xadmin/opinfo/author/<uid>/password/', views.reset_password),
-    url(r'mdeditor/', include('mdeditor.urls')),
+    # url(r'mdeditor/', include('mdeditor.urls')),
+    url(r'ueditor/', include("DjangoUeditor.urls")),
     path("", include('opinfo.urls')),
     re_path('^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT})
 ]
