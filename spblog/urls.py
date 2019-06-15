@@ -25,8 +25,6 @@ from xadmin.plugins import xversion
 xadmin.autodiscover()
 xversion.register_models()
 
-
-
 urlpatterns = [
     path("xadmin/", xadmin.site.urls),
     path('xadmin/opinfo/author/<uid>/password/', views.reset_password),

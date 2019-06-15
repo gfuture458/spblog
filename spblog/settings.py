@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "opinfo.UserAccount"
+AUTHENTICATION_BACKENDS = [
+    'opinfo.site.CustomBackend'
+]
 
 # Application definition
 
@@ -101,8 +104,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'myblog',
         'USER': 'root',
-        'PASSWORD': 'zngz123456',
-        'HOST': 'localhost',
+        'PASSWORD': 'gjh123456',
+        'HOST': 'egzyq.com',
         'PORT': '3306'
     },
     'OPTIONS': {

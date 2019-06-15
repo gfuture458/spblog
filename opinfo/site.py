@@ -5,6 +5,10 @@
 # @author：jh
 
 from . import models
+from django.db.models import Q
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth import get_user_model
+
 
 def head_info(request):
     """站点head信息"""
@@ -18,3 +22,16 @@ def head_info(request):
                   "所以在此，记录生活和学习的点点滴滴。"
     }
     return site
+
+
+User = get_user_model()
+
+
+class CustomBackend(ModelBackend):
+
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        user = User.objects.filter(Q(username=username) | Q(email=username)).first()
+        if user:
+            if user.check_password(password):
+                return user
+        return None

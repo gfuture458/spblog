@@ -61,7 +61,7 @@ class Categoty(BaseModel):
         db_table = "jh_categoty"
 
     def __str__(self):
-        return  self.cts
+        return self.cts
 
 
 class Tag(BaseModel):
