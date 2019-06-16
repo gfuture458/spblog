@@ -41,9 +41,10 @@ def true_return(data=[], msg="请求成功", code=200):
 def false_return(data=[], msg="请求失败", code=-1):
     return {"data": data,"msg": msg, "code": code}
 
-def deal_session(request, data):
-    if not request.session.get(data):
-        request.session[data] = True
+
+def deal_session(request, pk):
+    if not request.session.get(pk):
+        request.session[pk] = True
         request.session.set_expiry(60*60*24*7)
         return True
     return False

@@ -77,7 +77,6 @@ class InfoView(View):
     def get(self, request, bid,*args, **kwargs):
         query = self.model.objects.filter(pk=bid).first()
         sider = utils.get_fine_top_like()
-        # query.content = query.content
         query.read += 1
         query.save(update_fields=("read",))
         next = self.model.objects.filter(created_at__gt=query.created_at, is_active=True).order_by('-created_at').first()
@@ -97,7 +96,7 @@ class InfoView(View):
 
     def post(self, request, *args, **kwargs):
         pk = kwargs.get("bid")
-        not_like_ever = utils.deal_session(request, "like")
+        not_like_ever = utils.deal_session(request, pk)
         if not_like_ever:
             blog = self.model.objects.filter(pk=pk).first()
             blog.like += 1
