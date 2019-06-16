@@ -23,6 +23,6 @@ six==1.12.0
 sqlparse==0.3.0
 tablib==0.13.0
 urllib3==1.25.3
-xadmin==0.6.1
+#xadmin==0.6.1
 xlrd==1.2.0
 xlwt==1.3.0
