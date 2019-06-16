@@ -3,6 +3,7 @@ from django.db import models
 from DjangoUeditor.models import UEditorField
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
+from django.utils.safestring import mark_safe
 
 # Create your models here.
 
@@ -98,7 +99,7 @@ class Blog(BaseModel):
     # content = MDTextField()
     content = UEditorField(verbose_name="内容", blank=True,width="100%",
                            imagePath='blog/img/', filePath='blog/file/')
-    # source = models.URLField(null=True, blank=True, verbose_name="原文链接", )
+    source = models.URLField(null=True, blank=True, verbose_name="原文链接", )
     is_fine = models.BooleanField(default=False, verbose_name="推荐文章")
     is_top = models.BooleanField(default=False, verbose_name="特别推荐")
     read = models.PositiveIntegerField(default=0, verbose_name="阅读数")
@@ -112,11 +113,18 @@ class Blog(BaseModel):
         return self.title
 
     def url(self):
-        from django.utils.safestring import mark_safe
         path = "/info/{}".format(self.id)
         return mark_safe('<a href="{}" target="_blank">{}</a>'.format(path, path))
 
     url.short_description = "链接"
+
+    def if_origin(self):
+        if not self.origin:
+            url = self.source
+            return mark_safe('<a href={} target="_blank">{}</a>'.format(url, "原文链接"))
+        return True
+
+    if_origin.short_description = "是否原创"
 
 
 class MyBlog(Blog):

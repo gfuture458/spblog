@@ -36,7 +36,7 @@ class CategotyAdmin(object):
 
 class BlogAdmin(object):
     readonly_fields = ["read", "like"]
-    list_display = ('title', 'author', 'cts', 'origin', 'tags', 'read', 'like', 'url')
+    list_display = ('title', 'author', 'cts', 'if_origin', 'tags', 'read', 'like', 'url')
     style_fields = {"content": "ueditor"}
 #     list_display = ["title", "author", "desc", "cts", "tags", "cover", "content", "is_fine", "is_top"]
     # readonly_fields = ('read', 'like')
