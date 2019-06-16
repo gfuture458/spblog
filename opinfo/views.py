@@ -77,14 +77,14 @@ class InfoView(View):
     def get(self, request, bid,*args, **kwargs):
         query = self.model.objects.filter(pk=bid).first()
         sider = utils.get_fine_top_like()
-        query.content = query.content.replace('"><img', 'align:"center;"><img')
+        # query.content = query.content
         query.read += 1
         query.save(update_fields=("read",))
         next = self.model.objects.filter(created_at__gt=query.created_at, is_active=True).order_by('-created_at').first()
         prev = self.model.objects.filter(created_at__lt=query.created_at, is_active=True).order_by('-created_at').first()
 
         # 根据标签查找相关文章
-        others = self.model.objects.filter(tags__name__in=[x.name for x in query.tags.all()])[:10]
+        others = self.model.objects.exclude(pk=query.id).filter(tags__name__in=[x.name for x in query.tags.all()])[:10]
         context = {
             "blog": query,
             "sider": sider,

@@ -91,11 +91,12 @@ class Blog(BaseModel):
     desc = models.TextField(max_length=100, null=True, verbose_name="文章简介")
     cts = models.ForeignKey(to=Categoty, related_name='ctsblogs', null=True, verbose_name="文章分类",
                             on_delete=models.SET_NULL, limit_choices_to={"is_active":True})
+    origin = models.BooleanField(default=False, verbose_name="原创")
     tags = models.ManyToManyField(to=Tag, related_name="tblogs", verbose_name="标签",
                                   blank=True, limit_choices_to={"is_active": True})
     cover = models.ImageField(upload_to='blog/cover', verbose_name="封面", blank=True, null=True)
     # content = MDTextField()
-    content = UEditorField(verbose_name="内容", width="100%", blank=True,
+    content = UEditorField(verbose_name="内容", blank=True,width="100%",
                            imagePath='blog/img/', filePath='blog/file/')
     # source = models.URLField(null=True, blank=True, verbose_name="原文链接", )
     is_fine = models.BooleanField(default=False, verbose_name="推荐文章")
@@ -109,6 +110,13 @@ class Blog(BaseModel):
 
     def __str__(self):
         return self.title
+
+    def url(self):
+        from django.utils.safestring import mark_safe
+        path = "/info/{}".format(self.id)
+        return mark_safe('<a href="{}" target="_blank">{}</a>'.format(path, path))
+
+    url.short_description = "链接"
 
 
 class MyBlog(Blog):

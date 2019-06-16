@@ -173,7 +173,7 @@ h1.t_nav { border-bottom: #bfbfbf 1px solid; font-size: 14px; font-weight: norma
 .timebox li:hover span { color: #000 }
 /*infosbox*/
 .infosbox { float: left; width: 66%; overflow: hidden; background: #FFF; }
-.newsview { padding: 0 30px }
+.newsview { padding: 0 30px}
 .intitle { line-height: 40px; height: 40px; font-size: 14px; ; border-bottom: #000 2px solid; }
 .intitle a { font-weight: normal; }
 .news_title { font-size: 24px; font-weight: normal; padding: 30px 0 0 0; color: #333; }
@@ -189,8 +189,8 @@ h1.t_nav { border-bottom: #bfbfbf 1px solid; font-size: 14px; font-weight: norma
 .news_content p { overflow: hidden; padding-bottom: 4px; padding-top: 6px; word-wrap: break-word; }
 .tags a { background: #F4650E; padding: 3px 8px; margin: 0 5px 0 0; color: #fff; }
 .tags { margin: 30px 0; }
-.infosbox .news_con { line-height: 1.8; font-size: 16px; text-align: justify; }
-.infosbox .news_con p { margin-bottom: 25x }
+.infosbox .news_con { line-height: 1.8; font-size: 16px; text-align: justify}
+.infosbox .news_con p { margin-bottom: 25px}
 .infosbox .news_con img { max-width: 650px; height: auto; }
 .infosbox .share { padding: 20px; }
 .nextinfo { line-height: 24px; width: 100%; background: #FFF; border-radius: 10px; overflow: hidden; margin: 20px 0 }

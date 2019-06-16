@@ -4,18 +4,18 @@
 # @name: utils
 # @author：jh
 
-import markdown
+# import markdown
 from . import models
 
 from django.utils import timezone
 
-def get_content_view(content):
-    result = markdown.markdown(content, extensions=[
-        'markdown.extensions.extra',
-        'markdown.extensions.codehilite',
-        'markdown.extensions.toc'
-    ])
-    return result.replace("p><img", 'p align="center"><img').replace('"codehilite"', '"codehilite" style="max-width: 650px;height: auto"')
+# def get_content_view(content):
+#     result = markdown.markdown(content, extensions=[
+#         'markdown.extensions.extra',
+#         'markdown.extensions.codehilite',
+#         'markdown.extensions.toc'
+#     ])
+#     return result.replace("p><img", 'p align="center"><img').replace('"codehilite"', '"codehilite" style="max-width: 650px;height: auto"')
 
 
 def get_fine_top_like():
