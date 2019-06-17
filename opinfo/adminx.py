@@ -16,7 +16,7 @@ User = get_user_model()
 class AuthorAdmin(UserAdmin):
     list_display = [ 'username', "email", 'is_staff', 'is_active', 'date_joined']
     readonly_fields = ('date_joined', 'last_login', 'email', 'is_active', 'is_staff')
-
+    style_fields = {"desc": "ueditor"}
     def get_form_layout(self):
         if self.org_obj:
             self.form_layout = (

@@ -31,7 +31,12 @@ class Info(View):
 
 class AboutMe(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'about.html')
+        user = models.UserAccount.objects.filter(is_superuser=True).first()
+        user.desc = user.desc.replace('<img', '<img class="myimg"')
+        context = {
+            "my": user
+        }
+        return render(request, 'about.html', context=context)
 
 
 class LanguageView(View):

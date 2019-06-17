@@ -40,7 +40,9 @@ class UserAccount(AbstractUser):
         verbose_name="登陆邮箱",
         unique=True
     )
-    desc = models.TextField(max_length=200, blank=True, null=True, verbose_name="自我简介")
+    # desc = models.TextField(max_length=200, blank=True, null=True, verbose_name="自我简介")
+    desc = UEditorField(verbose_name="自我简介", blank=True,width="100%",
+                           imagePath='my/img/', filePath='my/file/')
     alipay = models.ImageField(null=True, blank=True, upload_to="ds/alipay/", verbose_name="支付宝二维码")
     wechat = models.ImageField(null=True, blank=True, upload_to="ds/wechat/", verbose_name="微信二维码")
 
