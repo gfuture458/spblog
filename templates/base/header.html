@@ -7,7 +7,7 @@
     <li><a href="/language">编程语言</a>
         <ul class="sub-nav">
             {% for foo in A %}
-                <li><a href="/sub_info/{{ foo.pk }}">{{ foo.first.cts }}</a></li>
+                <li><a href="/sub_info/{{ foo.pk }}">{{ foo.value }}</a></li>
             {% endfor %}
         </ul>
     </li>
