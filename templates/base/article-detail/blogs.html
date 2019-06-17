@@ -11,8 +11,8 @@
             <p class="blogtext">{{ foo.desc }}</p>
             <div class="bloginfo">
                 <ul>
-                    <li class="author"><a href="/">{{ foo.author }}</a></li>
-                    <li class="lmname"><a href="/">{{ foo.cts }}</a></li>
+                    <li class="author"><a href="javascript:;">{{ foo.author }}</a></li>
+                    <li class="lmname"><a href="/sub_info/{{ foo.cts.id }}">{{ foo.cts }}</a></li>
                     <li class="timer">{{ foo.created_at }}</li>
                     <li class="view"><span>{{ foo.read }}</span>已阅读</li>
                     <li class="like">{{ foo.like }}</li>

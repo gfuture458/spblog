@@ -84,7 +84,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
                 'opinfo.site.head_info',
+                'opinfo.site.footer_info',
+                'opinfo.site.get_header_items'
             ],
         },
     },

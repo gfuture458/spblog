@@ -35,3 +35,24 @@ class CustomBackend(ModelBackend):
             if user.check_password(password):
                 return user
         return None
+
+
+def footer_info(request):
+    from datetime import datetime
+    time_info = {
+        "times": {
+            "start": 2019,
+            "end": datetime.today().year
+        }
+    }
+    return time_info
+
+
+def get_header_items(request):
+    from .models import cats
+    category = models.Categoty
+    items = {}
+    for i, j in cats:
+        target = category.objects.filter(pre_cts=i).all()
+        items[i] = [{"pk": x.id, "value": x.cts} for x in target]
+    return items

@@ -7,6 +7,14 @@ from django.utils.safestring import mark_safe
 
 # Create your models here.
 
+cats = (
+        ("A", "编程语言"),
+        ("B", "学习笔记"),
+        ("C", "日常生活"),
+        ("D", "灵光一现")
+)
+
+
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="添加时间")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="更新时间")
@@ -29,7 +37,7 @@ class UserAccount(AbstractUser):
     )
     header = models.ImageField(null=True, blank=True, upload_to="header/", verbose_name="头像")
     email = models.EmailField(
-        verbose_name="帐号邮箱",
+        verbose_name="登陆邮箱",
         unique=True
     )
     desc = models.TextField(max_length=200, blank=True, null=True, verbose_name="自我简介")
@@ -51,10 +59,6 @@ class Author(UserAccount):
 
 
 class Categoty(BaseModel):
-    cats = (
-        ("A", "学无止境"),
-        ("B", "慢生活")
-    )
     pre_cts = models.CharField(max_length=1, choices=cats, verbose_name="前置分类")
     cts = models.CharField(max_length=10, verbose_name="分类", null=False, blank=False)
 

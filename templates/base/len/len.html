@@ -1,9 +1,18 @@
 <div class="pagebg sh"></div>
 <div class="container">
   <h1 class="t_nav">
-{#      <span>不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。 </span>#}
-      <span>观众器者为良匠，观众病者为良医。——叶适</span>
-      <a href="/" class="n1">网站首页</a><a href="/list" class="n2">学无止境</a></h1>
+        <span>{{ famous }}</span>
+      {% if topic == "编程语言" %}
+          <a href="/" class="n1">网站首页</a><a href="/language" class="n2">{{ topic }}</a></h1>
+      {% elif topic == "学习笔记" %}
+          <a href="/" class="n1">网站首页</a><a href="/study" class="n2">{{ topic }}</a></h1>
+      {% elif topic == "日常生活" %}
+          <a href="/" class="n1">网站首页</a><a href="/life" class="n2">{{ topic }}</a></h1>
+      {% elif topic == "灵光一现" %}
+          <a href="/" class="n1">网站首页</a><a href="/inspiration" class="n2">{{ topic }}</a></h1>
+      {% else %}
+          <a href="/" class="n1">网站首页</a><a href="/sub_info/{{ topic.id }}" class="n2">{{ topic.cts }}</a></h1>
+      {% endif %}
   <!--blogsbox begin-->
     {% include 'base/article-detail/blogs.html' %}
 
