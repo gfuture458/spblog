@@ -9,11 +9,21 @@ from xadmin.plugins.auth import UserAdmin, get_user_model
 from .models import Author, Tag, Categoty, Blog, MyBlog, Horselight
 from django.utils.translation import ugettext as _
 import xadmin
+from xadmin import views
 
 User = get_user_model()
 
 
-class AuthorAdmin(UserAdmin):
+class Base(object):
+    site_title = '博客后台管理系统'
+    site_footer = '郭家宏的博客'
+
+
+class TagAdmin(Base):
+    pass
+
+
+class AuthorAdmin(Base, UserAdmin):
     list_display = [ 'username', "email", 'is_staff', 'is_active', 'date_joined']
     readonly_fields = ('date_joined', 'last_login', 'email', 'is_active', 'is_staff')
     style_fields = {"desc": "ueditor"}
@@ -52,11 +62,11 @@ class OtherUser(AuthorAdmin):
         return super(AuthorAdmin, self).get_form_layout()
 
 
-class CategotyAdmin(object):
+class CategotyAdmin(Base):
     list_display = ["cts", "pre_cts"]
 
 
-class BlogAdmin(object):
+class BlogAdmin(Base):
     exclude = ["id", "author"]
     readonly_fields = ["read", "like"]
     list_display = ('title', 'author', 'cts', 'tags', 'if_origin', 'read', 'like', 'url')
@@ -71,11 +81,11 @@ class BlogAdmin(object):
         self.new_obj.save()
 
 
-class HorseLightAdmin(object):
+class HorseLightAdmin(Base):
     list_display = ["target", "name"]
 
 
-xadmin.site.register(Tag)
+xadmin.site.register(Tag, TagAdmin)
 xadmin.site.register(Categoty, CategotyAdmin)
 xadmin.site.register(Blog, BlogAdmin)
 xadmin.site.register(MyBlog, BlogAdmin)
@@ -83,3 +93,5 @@ xadmin.site.register(Author, AuthorAdmin)
 xadmin.site.unregister(User)
 xadmin.site.register(User, OtherUser)
 xadmin.site.register(Horselight, HorseLightAdmin)
+
+xadmin.site.register(views.CommAdminView, Base)
