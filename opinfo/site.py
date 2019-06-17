@@ -13,7 +13,7 @@ from django.contrib.auth import get_user_model
 def head_info(request):
     """站点head信息"""
     site = {
-        "abname": "dancesmile | 郭家宏",
+        "abname": "guojiahong | 郭家宏",
         "title": "郭家宏的博客",
         "keywords": "个人博客,郭家宏的博客,郭家宏个人博客,郭家宏",
         "description": "郭家宏个人博客，是一个站在web后端进阶之路的程序员个人网站，记录博主学习和成长，关注各种后端技术的学习和研究。",
