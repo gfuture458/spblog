@@ -76,6 +76,7 @@ class InfoView(View):
 
     def get(self, request, bid,*args, **kwargs):
         query = self.model.objects.filter(pk=bid).first()
+        query.content = query.content.replace('<img', '<img class="myimg"')
         sider = utils.get_fine_top_like()
         query.read += 1
         query.save(update_fields=("read",))

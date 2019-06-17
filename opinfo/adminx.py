@@ -10,9 +10,10 @@ from .models import Author, Tag, Categoty, Blog, MyBlog, Horselight
 from django.utils.translation import ugettext as _
 import xadmin
 
+
 class AuthorAdmin(UserAdmin):
     list_display = ["email", 'username', 'is_staff', 'is_active', 'date_joined']
-    readonly_fields = ('date_joined','last_login', 'email', 'is_active', 'is_staff')
+    readonly_fields = ('date_joined', 'last_login', 'email', 'is_active', 'is_staff')
 
     def get_form_layout(self):
         if self.org_obj:
@@ -44,6 +45,7 @@ class BlogAdmin(object):
 
 class HorseLightAdmin(object):
     list_display = ["target", "name"]
+
 
 xadmin.site.register(Tag)
 xadmin.site.register(Categoty, CategotyAdmin)
