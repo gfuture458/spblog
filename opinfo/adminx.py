@@ -6,7 +6,7 @@
 
 from xadmin.layout import Fieldset, Main, Row, Side
 from xadmin.plugins.auth import UserAdmin, get_user_model
-from .models import Author, Tag, Categoty, Blog, MyBlog, Horselight
+from .models import Author, Tag, Categoty, Blog, MyBlog, Horselight, Link
 from django.utils.translation import ugettext as _
 import xadmin
 from xadmin import views
@@ -85,6 +85,10 @@ class HorseLightAdmin(Base):
     list_display = ["target", "name"]
 
 
+class LinkAdmin(Base):
+    pass
+
+
 xadmin.site.register(Tag, TagAdmin)
 xadmin.site.register(Categoty, CategotyAdmin)
 xadmin.site.register(Blog, BlogAdmin)
@@ -93,5 +97,6 @@ xadmin.site.register(Author, AuthorAdmin)
 xadmin.site.unregister(User)
 xadmin.site.register(User, OtherUser)
 xadmin.site.register(Horselight, HorseLightAdmin)
+xadmin.site.register(Link, LinkAdmin)
 
 xadmin.site.register(views.CommAdminView, Base)

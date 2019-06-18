@@ -154,3 +154,17 @@ class Horselight(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class Link(BaseModel):
+    name = models.CharField(verbose_name="网站名称", max_length=15)
+    link = models.CharField(verbose_name="网站地址", max_length=100,
+                            null=False, blank=False, unique=True)
+    email = models.EmailField(verbose_name="邮箱地址", unique=True)
+
+    class Meta:
+        verbose_name_plural = verbose_name = "友情链接"
+        db_table = "jh_link"
+
+    def __str__(self):
+        return self.name

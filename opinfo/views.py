@@ -154,3 +154,12 @@ class SubInfoView(View):
             "topic": topic
         }
         return render(request, 'list.html', context=comtext)
+
+
+class LinkView(View):
+    model = models.Link
+
+    def post(self, request):
+        # query = self.model.objects.all()
+        # return render(request, )
+        pass
