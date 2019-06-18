@@ -62,8 +62,9 @@
             {% block detail %}{% endblock %}
         {% endif %}
         {% block sider %}{% endblock %}
+    {% include 'base/add_link/add_link.html' %}
     </article>
-    {% if time %}
+   {% if time %}
         <footer style="position: fixed; bottom: 0">
             {% include 'base/footer.html' %}
         </footer>

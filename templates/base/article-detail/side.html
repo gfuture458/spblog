@@ -61,6 +61,7 @@
       {% for link in sider.links %}
           <li><a href="{{ link.link }}" target="_blank">{{ link.name }}</a></li>
       {% endfor %}
+    <input class="music-qd inputs" type="button" value="添加友情链接" onclick="show()"/>
   </ul>
 </div>
 <div class="guanzhu" id="follow-us">
@@ -73,3 +74,14 @@
   </ul>
 </div>
 </div>
+<script type="text/javascript">
+    function show() {
+        var login = document.getElementsByClassName("music-lgin")[0];
+        console.log(login.style.display);
+        if (login.style.display == "none"){
+            login.style.setProperty("display", '')
+        }else {
+            login.style.setProperty("display", 'none')
+        }
+    }
+</script>

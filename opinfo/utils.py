@@ -19,11 +19,11 @@ from django.utils import timezone
 
 
 def get_fine_top_like():
-    fine = models.Blog.objects.filter(is_fine=True).order_by('-created_at')[:3]
-    top = models.Blog.objects.filter(is_top=True).order_by('-created_at')[:3]
-    like = models.Blog.objects.order_by("-like")[:5]
-    tags = models.Tag.objects.all()
-    links = models.Link.objects.all()
+    fine = models.Blog.objects.filter(is_active=True, is_fine=True).order_by('-created_at')[:3]
+    top = models.Blog.objects.filter(is_active=True, is_top=True).order_by('-created_at')[:3]
+    like = models.Blog.objects.filter(is_active=True).order_by("-like")[:5]
+    tags = models.Tag.objects.filter(is_active=True)
+    links = models.Link.objects.filter(is_active=True)
     context = {
         "t_fine": fine[0] if fine else '',
         "is_fine": fine[1:] if fine else '',

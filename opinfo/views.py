@@ -14,7 +14,7 @@ class Info(View):
     model = models.Blog
 
     def get(self, request, *args, **kwargs):
-        query_list = self.model.objects.order_by("-created_at")
+        query_list = self.model.objects.filter(is_active=True).order_by("-created_at")
         horse = models.Horselight.objects
         sider = utils.get_fine_top_like()
         context = {
@@ -41,7 +41,7 @@ class AboutMe(View):
 
 class LanguageView(View):
     def get(self, request, *args, **kwargs):
-        blogs = models.Blog.objects.filter(cts__pre_cts="A")
+        blogs = models.Blog.objects.filter(is_active=True, cts__pre_cts="A")
         sider = utils.get_fine_top_like()
         context = {
             "blog": blogs,
@@ -54,7 +54,7 @@ class LanguageView(View):
 
 class StudyView(View):
     def get(self, request, *args, **kwargs):
-        blogs = models.Blog.objects.filter(cts__pre_cts="B")
+        blogs = models.Blog.objects.filter(is_active=True, cts__pre_cts="B")
         sider = utils.get_fine_top_like()
         context = {
             "blog": blogs,
@@ -67,7 +67,7 @@ class StudyView(View):
 
 class LifeView(View):
     def get(self, request, *args, **kwargs):
-        blogs = models.Blog.objects.filter(cts__pre_cts="C")
+        blogs = models.Blog.objects.filter(is_active=True, cts__pre_cts="C")
         sider = utils.get_fine_top_like()
         comtext = {
             "sider": sider,
@@ -80,7 +80,7 @@ class LifeView(View):
 
 class InspirationView(View):
     def get(self, request, *args, **kwargs):
-        blogs = models.Blog.objects.filter(cts__pre_cts="D")
+        blogs = models.Blog.objects.filter(is_active=True, cts__pre_cts="D")
         sider = utils.get_fine_top_like()
         comtext = {
             "sider": sider,
@@ -95,7 +95,7 @@ class TimeView(View):
     model = models.Blog
 
     def get(self, request, *args, **kwargs):
-        blogs = self.model.objects.all()
+        blogs = self.model.objects.filter(is_active=True)
         return render(request, 'time.html', context={"blogs": blogs, "time": True})
 
 
@@ -119,7 +119,7 @@ class InfoView(View):
             '-created_at').first()
 
         # 根据标签查找相关文章
-        others = self.model.objects.exclude(pk=query.id).filter(tags__name__in=[x.name for x in query.tags.all()])[:10]
+        others = self.model.objects.exclude(pk=query.id).filter(is_active=True, tags__name__in=[x.name for x in query.tags.all()])[:10]
         context = {
             "blog": query,
             "sider": sider,
@@ -159,7 +159,25 @@ class SubInfoView(View):
 class LinkView(View):
     model = models.Link
 
-    def post(self, request):
-        # query = self.model.objects.all()
-        # return render(request, )
-        pass
+    def post(self, request, *args, **kwargs):
+        name = request.POST.get("name")
+        link = request.POST.get("link")
+        email = request.POST.get("email")
+        try:
+            self.model.objects.create(
+                name=name,
+                link=link,
+                email=email
+            )
+        except Exception as err:
+            print(err)
+            return JsonResponse(utils.false_return())
+        return JsonResponse(utils.true_return())
+
+
+def web_name_exist(request):
+    count = models.Link.objects.filter(name=request.GET.get("name")).count()
+    if not count:
+        return JsonResponse(utils.true_return())
+    else:
+        return JsonResponse(utils.false_return())

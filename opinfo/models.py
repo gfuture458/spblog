@@ -161,6 +161,7 @@ class Link(BaseModel):
     link = models.CharField(verbose_name="网站地址", max_length=100,
                             null=False, blank=False, unique=True)
     email = models.EmailField(verbose_name="邮箱地址", unique=True)
+    is_active = models.BooleanField(default=False, verbose_name="是否可见")
 
     class Meta:
         verbose_name_plural = verbose_name = "友情链接"
