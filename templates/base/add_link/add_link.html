@@ -1,0 +1,108 @@
+<div class="music-lgin" style="display: none;position: fixed;" >
+<!--1-->
+    <div class="link_tag">
+        <div class="music-lgin-text">
+            <input class="inputname inputs" id="webname" type="text" placeholder="网站名称" onchange="web_name_exist()">
+        </div>
+        <!--2-->
+        <div class="music-lgin-text">
+            <input type="text" class="mima inputs" id="weblink" placeholder="网站地址" onchange="web_link_exist()"/>
+        </div>
+        <div class="music-lgin-text">
+            <input type="text" class="mima inputs" id="webemail" placeholder="联系邮箱" onchange="web_email_exist()"/>
+        </div>
+        <!--3-->
+        <div class="music-lgin-text">
+{#            <button class="music-qd inputs">提交</button>#}
+            <input class="music-qd inputs" id="submit" type="button" value="提交"/>
+        </div>
+    <div/>
+</div>
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'layer/layer.js' %}"></script>
+<script type="text/javascript">
+    $("#submit").click(function (event) {
+       var web_name = $("#webname");
+       var web_link = $("#weblink");
+       var web_email = $("#webemail");
+       if (!web_name.val()){
+           layer.msg("网站名称不能为空")
+       }else if (!web_link.val()){
+           layer.msg("链接不能为空")
+       }else if (!web_email.val()){
+           layer.msg("e邮箱不能为空")
+       }else {
+           $.ajax({
+               url: "/add_link/",
+               dataType:"json",
+               type: "post",
+               data:{
+                   csrfmiddlewaretoken: '{{ csrf_token }}',
+                   "name": web_name.val(),
+                   "link": web_link.val(),
+                   "email": web_email.val(),
+                  },
+               success:function(res){
+                   if (res.code == 200){
+                       layer.msg("提交成功");
+                       web_name.val('');
+                       web_email.val('');
+                       web_link.val('');
+                       document.getElementsByClassName("music-lgin")[0].style.display='none'
+                   }
+                   else {
+                       layer.msg(res.msg)
+                   }
+               }
+           })
+       }
+    });
+    function web_name_exist() {
+        $.ajax({
+            url: '/web_exist/',
+            type: 'get',
+            data: {
+                name: $("#webname").val(),
+                type: 'web_name'
+            },
+            success(res){
+                if (res.code == 200){
+                    layer.msg("名称可用")
+                }
+            }
+        })
+    };
+    function web_link_exist() {
+        $.ajax({
+            url: '/web_exist/',
+            type: 'get',
+            data: {
+                name: $("#weblink").val(),
+                type: 'web_link'
+            },
+            success(res){
+                if (res.code == 200){
+                    layer.msg("名称可用")
+                }
+            }
+        })
+    };
+    function web_email_exist() {
+        $.ajax({
+            url: '/web_exist/',
+            type: 'get',
+            data: {
+                name: $("#webemail").val(),
+                type: 'web_email'
+            },
+            success(res){
+                if (res.code == 200){
+                    layer.msg("名称可用")
+                }
+            }
+        })
+    }
+</script>
+<style>
+</style>
+</div>
