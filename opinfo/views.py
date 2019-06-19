@@ -177,6 +177,8 @@ class LinkView(View):
 
 def web_name_exist(request):
     count = models.Link.objects.filter(name=request.GET.get("name")).count()
+
+
     if not count:
         return JsonResponse(utils.true_return())
     else:

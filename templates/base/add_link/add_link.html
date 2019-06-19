@@ -21,6 +21,9 @@
 {% load staticfiles %}
 <script type="text/javascript" src="{% static 'layer/layer.js' %}"></script>
 <script type="text/javascript">
+    var sub1 = false;
+    var sub2 = false;
+    var sub3 = false;
     $("#submit").click(function (event) {
        var web_name = $("#webname");
        var web_link = $("#weblink");
@@ -32,29 +35,37 @@
        }else if (!web_email.val()){
            layer.msg("e邮箱不能为空")
        }else {
-           $.ajax({
-               url: "/add_link/",
-               dataType:"json",
-               type: "post",
-               data:{
-                   csrfmiddlewaretoken: '{{ csrf_token }}',
-                   "name": web_name.val(),
-                   "link": web_link.val(),
-                   "email": web_email.val(),
-                  },
-               success:function(res){
-                   if (res.code == 200){
-                       layer.msg("提交成功");
-                       web_name.val('');
-                       web_email.val('');
-                       web_link.val('');
-                       document.getElementsByClassName("music-lgin")[0].style.display='none'
+           if (sub1 == true && sub2 == true && sub3==true){
+               $.ajax({
+                   url: "/add_link/",
+                   dataType:"json",
+                   type: "post",
+                   data:{
+                       csrfmiddlewaretoken: '{{ csrf_token }}',
+                       "name": web_name.val(),
+                       "link": web_link.val(),
+                       "email": web_email.val(),
+                      },
+                   success:function(res){
+                       if (res.code == 200){
+                           layer.msg("提交成功");
+                           web_name.val('');
+                           web_email.val('');
+                           web_link.val('');
+                           document.getElementsByClassName("music-lgin")[0].style.display='none';
+                           sub1 = false;
+                           sub2 = false;
+                           sub3 = false
+                       }
+                       else {
+                           layer.msg(res.msg)
+                       }
                    }
-                   else {
-                       layer.msg(res.msg)
-                   }
-               }
-           })
+               })
+           }
+           else {
+               layer.msg("信息有误")
+           }
        }
     });
     function web_name_exist() {
@@ -67,7 +78,10 @@
             },
             success(res){
                 if (res.code == 200){
-                    layer.msg("名称可用")
+                    sub1 = true;
+                    layer.msg(res.msg)
+                }else {
+                    sub1 = false;
                 }
             }
         })
@@ -82,7 +96,10 @@
             },
             success(res){
                 if (res.code == 200){
-                    layer.msg("名称可用")
+                    sub2 = true;
+                    layer.msg(res.msg)
+                }else {
+                    sub2 = false
                 }
             }
         })
@@ -97,7 +114,10 @@
             },
             success(res){
                 if (res.code == 200){
-                    layer.msg("名称可用")
+                    sub3 = true;
+                    layer.msg(res.msg)
+                }else {
+                    sub3 = false
                 }
             }
         })
