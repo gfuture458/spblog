@@ -176,10 +176,27 @@ class LinkView(View):
 
 
 def web_name_exist(request):
-    count = models.Link.objects.filter(name=request.GET.get("name")).count()
-
-
-    if not count:
-        return JsonResponse(utils.true_return())
+    import re
+    print(request.GET)
+    tp = request.GET.get("type")
+    value = request.GET.get("name")
+    if tp == "web_name":
+        count = models.Link.objects.filter(name=value).count()
+        if count:
+            return JsonResponse(utils.false_return(msg="网站名称已存在"))
+        return JsonResponse(utils.true_return(msg="网站名称可用"))
+    elif tp == "web_link":
+        count = models.Link.objects.filter(link=value).count()
+        if count:
+            return JsonResponse(utils.false_return(msg="网站链接已存在"))
+        if not re.match(r'(http|https)://.+\..+$', value):
+            return JsonResponse(utils.false_return(msg="非法链接，可能缺少http://或者https://"))
+        return JsonResponse(utils.true_return(msg='链接可用'))
     else:
-        return JsonResponse(utils.false_return())
+        count = models.Link.objects.filter(email=value).count()
+        if count:
+            return JsonResponse(utils.false_return(msg="email已存在"))
+        else:
+            if not re.match('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$', value):
+                return JsonResponse(utils.false_return(msg='邮箱不正确'))
+            return JsonResponse(utils.true_return(msg='邮箱可用'))

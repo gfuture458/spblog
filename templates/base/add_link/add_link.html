@@ -29,10 +29,13 @@
        var web_link = $("#weblink");
        var web_email = $("#webemail");
        if (!web_name.val()){
+           web_name.addClass("input-error");
            layer.msg("网站名称不能为空")
        }else if (!web_link.val()){
+           web_link.addClass("input-error");
            layer.msg("链接不能为空")
        }else if (!web_email.val()){
+           web_email.addClass("input-error");
            layer.msg("e邮箱不能为空")
        }else {
            if (sub1 == true && sub2 == true && sub3==true){
@@ -64,7 +67,7 @@
                })
            }
            else {
-               layer.msg("信息有误")
+               layer.msg("所填信息有误")
            }
        }
     });
@@ -79,10 +82,10 @@
             success(res){
                 if (res.code == 200){
                     sub1 = true;
-                    layer.msg(res.msg)
                 }else {
                     sub1 = false;
                 }
+                layer.msg(res.msg)
             }
         })
     };
@@ -97,10 +100,11 @@
             success(res){
                 if (res.code == 200){
                     sub2 = true;
-                    layer.msg(res.msg)
                 }else {
+                    layer.msg(res.msg)
                     sub2 = false
                 }
+                layer.msg(res.msg)
             }
         })
     };
@@ -115,14 +119,12 @@
             success(res){
                 if (res.code == 200){
                     sub3 = true;
-                    layer.msg(res.msg)
                 }else {
                     sub3 = false
                 }
+                layer.msg(res.msg)
             }
         })
     }
 </script>
-<style>
-</style>
 </div>
