@@ -51,7 +51,7 @@
   <h2 class="hometitle">标签云</h2>
   <ul>
       {% for tag in sider.tags %}
-          <a href="/get_tag/{{  tag.id }}/{{ tag.name }}">{{ tag.name }}</a>
+          <a href="/get_tag/{{  tag.id }}">{{ tag.name }}</a>
       {% endfor %}
   </ul>
 </div>

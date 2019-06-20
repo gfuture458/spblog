@@ -11,8 +11,7 @@
       </div>
       <div class="tags">
           {% for tag in blog.tags.all %}
-            <a href="/" target="_blank">{{ tag }}</a>
-            &nbsp;
+            <a href="/get_tag_name/{{ tag }}" target="_blank">{{ tag }}</a>
           {% endfor %}
       </div>
       <div class="news_about">

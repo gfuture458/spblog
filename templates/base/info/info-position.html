@@ -1,4 +1,12 @@
 <h1 class="t_nav">
     <span>您现在的位置是：首页 > {{ blog.cts.get_pre_cts_display }} > {{ blog.cts }}</span>
-    <a href="/" class="n1">网站首页</a><a href="/" class="n2">{{ blog.cts.get_pre_cts_display }}</a>
+    {% if blog.cts.pre_cts == "A" %}
+        <a href="/" class="n1">网站首页</a><a href="/language" class="n2">{{ blog.cts.get_pre_cts_display }}</a>
+    {% elif blog.cts.pre_cts == "B" %}
+        <a href="/" class="n1">网站首页</a><a href="/study" class="n2">{{ blog.cts.get_pre_cts_display }}</a>
+    {% elif blog.cts.pre_cts == "C" %}
+        <a href="/" class="n1">网站首页</a><a href="/life" class="n2">{{ blog.cts.get_pre_cts_display }}</a>
+    {% elif blog.cts.pre_cts == "D" %}
+        <a href="/" class="n1">网站首页</a><a href="/inspiration" class="n2">{{ blog.cts.get_pre_cts_display }}</a>
+    {% endif %}
 </h1>

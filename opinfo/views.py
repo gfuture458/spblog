@@ -177,15 +177,32 @@ class LinkView(View):
 
 class GetTagView(View):
 
-    def get(self, request, tid, name):
+    def get(self, request, tid):
         blogs = models.Blog.objects.filter(tags=tid)
         sider = utils.get_fine_top_like()
-        print(name)
+        tag_info = models.Tag.objects.filter(pk=tid)
+        comtext = {
+            "sider": sider,
+            "blog": blogs,
+            "target_tag": tag_info.name,
+            "target_tag_id":tid,
+            "famous": "情之所至，诗无不至；诗之所至，情以之至。——清·王夫之",
+            "tag_info": True
+        }
+        return render(request, 'list.html', context=comtext)
+
+
+class GetTagNameView(View):
+
+    def get(self, request, name):
+        blogs = models.Blog.objects.filter(tags__name=name)
+        sider = utils.get_fine_top_like()
+        tag_info = models.Tag.objects.filter(name=name).first()
         comtext = {
             "sider": sider,
             "blog": blogs,
             "target_tag": name,
-            "target_tag_id":tid,
+            "target_tag_id": tag_info.id,
             "famous": "情之所至，诗无不至；诗之所至，情以之至。——清·王夫之",
             "tag_info": True
         }
