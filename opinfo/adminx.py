@@ -70,7 +70,7 @@ class CategotyAdmin(Base):
 class BlogAdmin(Base):
     exclude = ["id", "author"]
     readonly_fields = ["read", "like"]
-    list_display = ('title', 'author', 'cts', 'tags', 'if_origin', 'read', 'like', 'url')
+    list_display = ('title', 'author', 'cts', 'tags',"is_active", 'if_origin', 'read', 'like', 'url')
     style_fields = {"content": "ueditor"}
 
     #     list_display = ["title", "author", "desc", "cts", "tags", "cover", "content", "is_fine", "is_top"]
