@@ -79,6 +79,9 @@
         var login = document.getElementsByClassName("music-lgin")[0];
         {#console.log(login.style.display);#}
         if (login.style.display == "none"){
+            $("#webname").val('');
+            $("#weblink").val('');
+            $("#webemail").val('');
             login.style.setProperty("display", '')
         }else {
             login.style.setProperty("display", 'none')
