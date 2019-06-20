@@ -175,6 +175,23 @@ class LinkView(View):
         return JsonResponse(utils.true_return())
 
 
+class GetTagView(View):
+
+    def get(self, request, tid, name):
+        blogs = models.Blog.objects.filter(tags=tid)
+        sider = utils.get_fine_top_like()
+        print(name)
+        comtext = {
+            "sider": sider,
+            "blog": blogs,
+            "target_tag": name,
+            "target_tag_id":tid,
+            "famous": "情之所至，诗无不至；诗之所至，情以之至。——清·王夫之",
+            "tag_info": True
+        }
+        return render(request, 'list.html', context=comtext)
+
+
 def web_name_exist(request):
     import re
     print(request.GET)

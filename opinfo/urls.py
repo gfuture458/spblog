@@ -21,6 +21,8 @@ urlpatterns = [
     path('info/<bid>', views.InfoView.as_view()), # 文章详情
     path('sub_info/<cid>', views.SubInfoView.as_view()), # 二级文章列表详情
 
+    path('get_tag/<tid>/<name>', views.GetTagView.as_view()), # 获取标签博客
+
     path('add_link/', views.LinkView.as_view()), # 添加
 
     path('web_exist/', views.web_name_exist)

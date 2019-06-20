@@ -10,6 +10,8 @@
           <a href="/" class="n1">网站首页</a><a href="/life" class="n2">{{ topic }}</a></h1>
       {% elif topic == "灵光一现" %}
           <a href="/" class="n1">网站首页</a><a href="/inspiration" class="n2">{{ topic }}</a></h1>
+      {% elif tag_info %}
+          <a href="/" class="n1">网站首页</a><a href="/get_tag/{{ target_tag_id }}/{{ target_tag }}" class="n2">{{ target_tag }}</a></h1>
       {% else %}
           <a href="/" class="n1">网站首页</a><a href="/sub_info/{{ topic.id }}" class="n2">{{ topic.cts }}</a></h1>
       {% endif %}
