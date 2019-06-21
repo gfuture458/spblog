@@ -109,7 +109,7 @@ DATABASES = {
         'NAME': 'myblog',
         'USER': 'root',
         'PASSWORD': 'gjh123456',
-        'HOST': 'egzyq.com',
+        'HOST': '127.0.0.1',
         'PORT': '3306'
     },
     'OPTIONS': {
