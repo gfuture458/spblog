@@ -3,7 +3,8 @@
 <div class="banner">
 <div id="banner" class="fader">
     {% for left in top.left %}
-        <li class="slide" ><a href="/info/{{ left.target.first.id }}" ><img src=/uploads/{{ left.target.first.cover }}>
+        <li class="slide" ><a href="/info/{{ left.target.first.id }}" >
+            <img src=/uploads/{{ left.target.first.cover }}>
       <span class="imginfo">{{ left.target.first.title }}</span></a></li>
     {% endfor %}
   <div class="fader_controls">
