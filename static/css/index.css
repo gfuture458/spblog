@@ -12,7 +12,7 @@
 .fader .pager_list li:hover, .fader .pager_list li.active { opacity: 1; }
 .banner:hover .fader_controls .page.prev { opacity: 0.5; left: 0 }
 .banner:hover .fader_controls .page.next { opacity: 0.5; right: 0 }
-.imginfo { z-index: 9; position: absolute; font-size: 26px; color: #FFF; display: block; overflow: hidden; bottom: 12%; left: 0; right: 0; display: block; background: #00000061; padding: 0 40px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.imginfo { z-index: 9; position: absolute; font-size: 26px; color: #FFF; display: block; overflow: hidden; bottom: 10%; left: 0; right: 0; display: block; background: #00000061; padding: 0 40px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 /*toppic*/
 .toppic { width: 32%; float: right; overflow: hidden; position: relative; }
 .toppic li { width: 100%; background: #000; position: relative; overflow: hidden; }
