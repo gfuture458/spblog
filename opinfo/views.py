@@ -78,17 +78,17 @@ class LifeView(View):
         return render(request, 'list.html', context=comtext)
 
 
-class InspirationView(View):
-    def get(self, request, *args, **kwargs):
-        blogs = models.Blog.objects.filter(is_active=True, cts__pre_cts="D")
-        sider = utils.get_fine_top_like()
-        comtext = {
-            "sider": sider,
-            "blog": blogs,
-            "topic": "灵光一现",
-            "famous": "情之所至，诗无不至；诗之所至，情以之至。——清·王夫之"
-        }
-        return render(request, 'list.html', context=comtext)
+# class InspirationView(View):
+#     def get(self, request, *args, **kwargs):
+#         blogs = models.Blog.objects.filter(is_active=True, cts__pre_cts="D")
+#         sider = utils.get_fine_top_like()
+#         comtext = {
+#             "sider": sider,
+#             "blog": blogs,
+#             "topic": "灵光一现",
+#             "famous": "情之所至，诗无不至；诗之所至，情以之至。——清·王夫之"
+#         }
+#         return render(request, 'list.html', context=comtext)
 
 
 class TimeView(View):
