@@ -180,7 +180,7 @@ class GetTagView(View):
     def get(self, request, tid):
         blogs = models.Blog.objects.filter(tags=tid)
         sider = utils.get_fine_top_like()
-        tag_info = models.Tag.objects.filter(pk=tid)
+        tag_info = models.Tag.objects.filter(pk=tid).first()
         comtext = {
             "sider": sider,
             "blog": blogs,
