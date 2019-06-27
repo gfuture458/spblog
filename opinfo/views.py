@@ -1,5 +1,5 @@
 # coding: utf-8
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.http.response import JsonResponse
 from django.views.generic import View
 from . import models, utils
@@ -108,7 +108,11 @@ class InfoView(View):
     model = models.Blog
 
     def get(self, request, bid, *args, **kwargs):
-        query = self.model.objects.filter(pk=bid).first()
+        query = self.model.objects.filter(pk=bid)
+        if query.count():
+            query = query.first()
+        else:
+            return render_to_response('404.html', status=404)
         query.content = query.content.replace('<img', '<img class="myimg"')
         sider = utils.get_fine_top_like()
         query.read += 1
