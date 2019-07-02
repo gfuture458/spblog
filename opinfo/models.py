@@ -8,7 +8,7 @@ from django.utils.safestring import mark_safe
 # Create your models here.
 
 cats = (
-        ("A", ""),
+        ("A", "热点分享"),
         ("B", "学习笔记"),
         ("C", "日常生活"),
 )
