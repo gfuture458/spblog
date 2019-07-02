@@ -44,7 +44,7 @@ class LanguageView(View):
             "blog": blogs,
             "sider": sider,
             "topic": "编程语言",
-            "famous": "观众器者为良匠，观众病者为良医。——叶适"
+            "famous": ""
         }
         return render(request, 'list.html', context)
 
@@ -57,7 +57,7 @@ class StudyView(View):
             "blog": blogs,
             "sider": sider,
             "topic": "学习笔记",
-            "famous": "鸟欲高飞先振翅，人求上进先读书。——李苦禅"
+            "famous": "观众器者为良匠，观众病者为良医。——叶适"
         }
         return render(request, 'list.html', context)
 
