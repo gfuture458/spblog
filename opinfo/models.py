@@ -8,7 +8,7 @@ from django.utils.safestring import mark_safe
 # Create your models here.
 
 cats = (
-        ("A", "编程语言"),
+        ("A", ""),
         ("B", "学习笔记"),
         ("C", "日常生活"),
 )
@@ -18,6 +18,7 @@ class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="添加时间")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="更新时间")
     is_active = models.BooleanField(default=True, verbose_name="是否可见")
+
     class Meta:
         abstract = True
 

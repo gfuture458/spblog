@@ -3,9 +3,6 @@ from django.shortcuts import render, redirect, render_to_response
 from django.http.response import JsonResponse
 from django.views.generic import View
 from . import models, utils
-from DjangoUeditor.forms import UEditorField
-from django.core.paginator import Paginator, Page
-
 
 # Create your views here.
 

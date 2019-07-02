@@ -5,14 +5,14 @@
 .fader { position: relative; width: 100%; padding-top: 60%; font-family: "futura", arial; overflow: hidden; }
 .fader .slide { position: absolute; width: 100%; top: 0; z-index: 1; opacity: 0; height: 100%; }
 .fader .slide img { width: 100%; height: 100%; }
-.fader .prev, .fader .next { position: absolute; height: 80px; line-height: 55px; width: 50px; font-size: 100px; text-align: center; color: #fff; top: 50%; left: 50px; z-index: 4; margin-top: -25px; cursor: pointer; opacity: 0; transition: all 100ms; }
+.fader .prev, .fader .next { position: absolute; height: 80px; line-height: 55px; width: 50px; font-size: 100px; text-align: center; color: #fff; top: 50%; left: 50px; z-index: 4; margin-top: -25px; cursor: pointer; opacity: 0; transition: all 150ms; }
 .fader .next { left: auto; right: 50px; }
-.fader .pager_list { position: absolute; width: 100%; height: 30px; padding: 0; line-height: 40px; bottom: 0; text-align: center; z-index: 4; }
+.fader .pager_list { position: absolute; width: 100%; height: 40px; padding: 0; line-height: 40px; bottom: 0; text-align: center; z-index: 4; }
 .fader .pager_list li { display: inline-block; width: 15px; height: 15px; margin: 0 7px; background: #fff; opacity: .3; text-indent: -9999px; border-radius: 999px; cursor: pointer; transition: all 150ms; }
 .fader .pager_list li:hover, .fader .pager_list li.active { opacity: 1; }
 .banner:hover .fader_controls .page.prev { opacity: 0.5; left: 0 }
 .banner:hover .fader_controls .page.next { opacity: 0.5; right: 0 }
-.imginfo { z-index: 9; position: absolute; font-size: 26px; color: #FFF; display: block; overflow: hidden; bottom: 10%; left: 0; right: 0; display: block; background: #00000061; padding: 0 40px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.imginfo { z-index: 9; position: absolute; font-size: 26px; color: #FFF; display: block; overflow: hidden; bottom: 12%; left: 0; right: 0; display: block; background: #00000061; padding: 0 40px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 /*toppic*/
 .toppic { width: 32%; float: right; overflow: hidden; position: relative; }
 .toppic li { width: 100%; background: #000; position: relative; overflow: hidden; }
@@ -26,7 +26,7 @@
 .toppic li:hover i { opacity: 1; }
 .toppic li:last-child { margin-top: 19px }
 /*blogsbox*/
-.blogsbox { width: 66%; overflow: hidden; float: left ;padding-top: 20px}
+.blogsbox { width: 66%; overflow: hidden; float: left }
 .blogs { overflow: hidden; margin-bottom: 20px; padding: 20px; background: #FFF; -webkit-box-shadow: 0 2px 5px 0 rgba(146, 146, 146, .1); -moz-box-shadow: 0 2px 5px 0 rgba(146, 146, 146, .1); box-shadow: 0 2px 5px 0 rgba(146, 146, 146, .1); -webkit-transition: all 0.6s ease; -moz-transition: all 0.6s ease; -o-transition: all 0.6s ease; transition: all 0.6s ease; }
 .blogs .blogpic { float: left; width: 30%; max-height: 170px; margin-right: 20px; display: block; overflow: hidden; }
 .blogs .blogpic img { width: 100%; height: auto; -webkit-transition: all 0.6s ease; -moz-transition: all 0.6s ease; -o-transition: all 0.6s ease; transition: all 0.6s ease; margin-bottom: 10px }
@@ -55,7 +55,7 @@
 .bigpic img { width: 100%; -webkit-transition: all 0.6s ease; -moz-transition: all 0.6s ease; -o-transition: all 0.6s ease; -ms-transition: all 0.6s ease; transition: all 0.6s ease; }
 .bigpic:hover img { opacity: 0.8 }
 /*sidebar*/
-.sidebar { width: 32%; overflow: hidden; float: right ;padding-top: 20px}
+.sidebar { width: 32%; overflow: hidden; float: right }
 .sidebar div { padding: 35px 30px; margin-bottom: 20px; background: #FFF; -webkit-box-shadow: 0 2px 5px 0 rgba(146, 146, 146, .1); -moz-box-shadow: 0 2px 5px 0 rgba(146, 146, 146, .1); box-shadow: 0 2px 5px 0 rgba(146, 146, 146, .1); }
 .hometitle { font-size: 18px; color: #282828; font-weight: 600; margin: 0; text-transform: uppercase; padding-bottom: 15px; margin-bottom: 25px; position: relative; }
 .hometitle:after { content: ""; background-color: #282828; left: 0; width: 50px; height: 2px; bottom: 0; position: absolute; -webkit-transition: 0.5s; -moz-transition: 0.5s; -ms-transition: 0.5s; -o-transition: 0.5s; transition: 0.5s; }
@@ -173,7 +173,7 @@ h1.t_nav { border-bottom: #bfbfbf 1px solid; font-size: 14px; font-weight: norma
 .timebox li:hover span { color: #000 }
 /*infosbox*/
 .infosbox { float: left; width: 66%; overflow: hidden; background: #FFF; }
-.newsview { padding: 0 30px}
+.newsview { padding: 0 30px }
 .intitle { line-height: 40px; height: 40px; font-size: 14px; ; border-bottom: #000 2px solid; }
 .intitle a { font-weight: normal; }
 .news_title { font-size: 24px; font-weight: normal; padding: 30px 0 0 0; color: #333; }
@@ -189,9 +189,8 @@ h1.t_nav { border-bottom: #bfbfbf 1px solid; font-size: 14px; font-weight: norma
 .news_content p { overflow: hidden; padding-bottom: 4px; padding-top: 6px; word-wrap: break-word; }
 .tags a { background: #F4650E; padding: 3px 8px; margin: 0 5px 0 0; color: #fff; }
 .tags { margin: 30px 0; }
-.infosbox .news_con { line-height: 1.8; font-size: 16px; text-align: justify}
-.infosbox .news_con p { margin-bottom: 25px}
-.myimg {margin: auto;}
+.infosbox .news_con { line-height: 1.8; font-size: 16px; text-align: justify; }
+.infosbox .news_con p { margin-bottom: 25x }
 .infosbox .news_con img { max-width: 650px; height: auto; }
 .infosbox .share { padding: 20px; }
 .nextinfo { line-height: 24px; width: 100%; background: #FFF; border-radius: 10px; overflow: hidden; margin: 20px 0 }
