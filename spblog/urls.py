@@ -33,6 +33,7 @@ urlpatterns = [
     path("", include('opinfo.urls')),
     re_path('^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
+    url(r'^uploads/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}, name='uploads'),
 ]
 
 if settings.DEBUG:
