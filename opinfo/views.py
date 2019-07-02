@@ -1,6 +1,6 @@
 # coding: utf-8
 from django.shortcuts import render, redirect, render_to_response
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse, Http404
 from django.views.generic import View
 from . import models, utils
 
@@ -109,7 +109,8 @@ class InfoView(View):
         if query.count():
             query = query.first()
         else:
-            return render_to_response('404.html', status=404)
+            raise Http404
+            # return render_to_response('404.html', status=404)
         query.content = query.content.replace('<img', '<img class="myimg"')
         sider = utils.get_fine_top_like()
         query.read += 1
