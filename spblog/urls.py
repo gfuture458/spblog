@@ -31,9 +31,10 @@ urlpatterns = [
     # url(r'mdeditor/', include('mdeditor.urls')),
     url(r'ueditor/', include("DjangoUeditor.urls")),
     path("", include('opinfo.urls')),
-    re_path('^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT})
+    re_path('^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
 ]
 
-# if settings.DEBUG:
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
