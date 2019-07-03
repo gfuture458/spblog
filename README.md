@@ -1,7 +1,15 @@
 #spblog
 
-#markdown
-https://blog.csdn.net/duke10/article/details/81033686
+个人博客
+
+django + xadmin
+
+模版  https://www.yangqq.com/  
+部署 nginx + uwsgi
+
+编辑器  ueditor
+
+
 
 #解决安装mysqlclient的冲突
 apt-get install libmysqlclient-dev python3-dev
