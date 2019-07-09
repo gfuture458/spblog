@@ -53,6 +53,6 @@ def get_header_items(request):
     category = models.Categoty
     items = {}
     for i, j in cats:
-        target = category.objects.filter(pre_cts=i).all()
+        target = category.objects.filter(pre_cts=i, is_active=True).all()
         items[i] = [{"pk": x.id, "value": x.cts} for x in target]
     return items
