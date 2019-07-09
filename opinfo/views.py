@@ -147,7 +147,7 @@ class SubInfoView(View):
     model = models.Blog
 
     def get(self, request, cid):
-        blogs = self.model.objects.filter(cts=cid)
+        blogs = self.model.objects.filter(cts=cid, is_active=True)
         topic = models.Categoty.objects.filter(pk=cid).first()
         sider = utils.get_fine_top_like()
         comtext = {
