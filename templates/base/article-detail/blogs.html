@@ -5,7 +5,9 @@
             <h3 class="blogtitle"><a href="/info/{{ foo.id }}">{{ foo.title }}</a></h3>
             <span class="blogpic">
                 <a href="/info/{{ foo.id }}" title="">
-                    <img src=/uploads/{{ foo.cover }} alt="图片没找到">
+                    {% if foo.cover %}
+                        <img src=/uploads/{{ foo.cover }} alt="图片没找到">
+                    {% endif %}
                 </a>
             </span>
             <p class="blogtext">{{ foo.desc }}</p>
