@@ -10,7 +10,9 @@
   <ul>
       {% for top in sider.is_top %}
           <li>
-              <i><img src=/uploads/{{ top.cover }}></i>
+          {% if top.cover %}
+            <i><img src=/uploads/{{ top.cover }}></i>
+          {% endif %}
               <p>{{ top.title }}
                   <span>
                       <a href="/info/{{ top.id }}">阅读</a>
@@ -23,15 +25,23 @@
 <div class="tuijian">
   <h2 class="hometitle">推荐文章</h2>
   <ul class="tjpic">
-    <i><img src=/uploads/{{ sider.t_fine.cover }}></i>
-    <p><a href="/info/{{ sider.t_fine.id }}">{{ sider.t_fine.desc }}</a></p>
+      {% if sider.t_fine.cover %}
+        <i><img src=/uploads/{{ sider.t_fine.cover }}></i>
+        <p><a href="/info/{{ sider.t_fine.id }}">{{ sider.t_fine.desc }}</a></p>
+      {% else %}
+        <p><a href="/info/{{ sider.t_fine.id }}">{{ sider.t_fine.title }}</a></p>
+      {% endif %}
   </ul>
   <ul class="sidenews">
       {% for fine in sider.is_fine %}
           <li>
-              <i><img src=/uploads/{{ fine.cover }}></i>
-              <p><a href="/info/{{ fine.id }}">{{ fine.desc }}</a></p>
-              <span>{{ fine.created_at }}</span>
+          {% if fine.cover %}
+            <i><img src=/uploads/{{ fine.cover }}></i>
+            <p><a href="/info/{{ fine.id }}">{{ fine.desc }}</a></p>
+          {% else %}
+            <p><a href="/info/{{ fine.id }}">{{ fine.title }}</a></p>
+          {% endif %}
+            <span>{{ fine.created_at }}</span>
           </li>
       {% endfor %}
   </ul>
@@ -39,14 +49,22 @@
 <div class="tuijian">
   <h2 class="hometitle">点击排行</h2>
   <ul class="tjpic">
-    <i><img src=/uploads/{{ sider.t_like.cover }}></i>
-    <p><a href="/info/{{ sider.t_like.id }}">{{ sider.t_like.desc }}</a></p>
+      {% if sider.t_like.cover %}
+        <i><img src=/uploads/{{ sider.t_like.cover }}></i>
+        <p><a href="/info/{{ sider.t_like.id }}">{{ sider.t_like.desc }}</a></p>
+      {% else %}
+          <p><a href="/info/{{ sider.t_like.id }}">{{ sider.t_like.title }}</a></p>
+      {% endif %}
   </ul>
   <ul class="sidenews">
       {% for lk in sider.like %}
           <li>
-              <i><img src=/uploads/{{ lk.cover }}></i>
-              <p><a href="/info/{{ lk.id }}">{{ lk.desc }}</a></p>
+          {% if lk.cover %}
+            <i><img src=/uploads/{{ lk.cover }}></i>
+            <p><a href="/info/{{ lk.id }}">{{ lk.desc }}</a></p>
+          {% else %}
+              <p><a href="/info/{{ lk.id }}">{{ lk.title }}</a></p>
+          {% endif %}
               <span>2018-05-13</span>
           </li>
       {% endfor %}
