@@ -92,7 +92,7 @@ class TimeView(View):
     model = models.Blog
 
     def get(self, request, *args, **kwargs):
-        blogs = self.model.objects.filter(is_active=True)
+        blogs = self.model.objects.filter(is_active=True).order_by("-created_at")
         return render(request, 'time.html', context={"blogs": blogs, "time": True})
 
 
